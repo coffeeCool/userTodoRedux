@@ -47,62 +47,110 @@ sellp = (time) ->
     , time
 
 # create user  
-createFuc = (resolve, reject)->
-  myStore.dispatch actions.userCreate 
-    data:
-      username: '何文涛'
-      password: '123456'
-      phoneNo: '110'
-    callback:
-      success: (data) ->
-        resolve data
-      fail: (data) ->
-        reject data
+createFuc = ->
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userCreate 
+      data:
+        username: '何文涛'
+        password: '123456'
+        phoneNo: '110'
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
 
-  await sellp 1000
-  dd myStore.getState()
+    await sellp 1000
+    dd myStore.getState()
+# createFuc = (resolve, reject)->
+#   myStore.dispatch actions.userCreate 
+#     data:
+#       username: '何文涛'
+#       password: '123456'
+#       phoneNo: '110'
+#     callback:
+#       success: (data) ->
+#         resolve data
+#       fail: (data) ->
+#         reject data
+
+#   await sellp 1000
+#   dd myStore.getState()
 
 # login user
 loginFuc = (data) ->
-  myStore.dispatch actions.userLogin
-    username: '何文涛'
-    password: '123456'
-  await sellp 1000
-  dd myStore.getState()
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userLogin
+      data:
+        username: '何文涛'
+        password: '123456'
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
+    await sellp 1000
+    dd myStore.getState()
 
 # fetch user
 fetchFuc = (data) ->
-  myStore.dispatch actions.userFetch
-    objectId: data.objectId
-  await sellp 1000
-  dd myStore.getState()
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userFetch
+      data:
+        objectId: data.objectId
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
+    await sellp 1000
+    dd myStore.getState()
 
 # patch user
 patchFuc = (data) ->
-  myStore.dispatch actions.userPatch
-    sessionToken: data.sessionToken
-    objectId: data.objectId
-    username: '陈欢'
-    password: '123456'
-    phoneNo: '119'
-  await sellp 1000
-  dd myStore.getState()
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userPatch
+      data:
+        sessionToken: data.sessionToken
+        objectId: data.objectId
+        username: '陈欢'
+        password: '123456'
+        phoneNo: '119'
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
+    await sellp 1000
+    dd myStore.getState()
 
 # reload class
 reloadFuc = ->
-  myStore.dispatch actions.userReload
-    data: ''
-  
-  await sellp 1000
-  dd myStore.getState()
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userReload
+      data: ''
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
+    await sellp 1000
+    dd myStore.getState()
 
 # remove user
 removeFuc = (data) ->
-  myStore.dispatch actions.userRemove
-    sessionToken: data.sessionToken
-    objectId: data.objectId
-  await sellp 1000
-  dd myStore.getState()
+  new Promise (resolve, reject) ->
+    myStore.dispatch actions.userRemove
+      data:
+        sessionToken: data.sessionToken
+        objectId: data.objectId
+      callback:
+        success: (data) ->
+          resolve data
+        fail: (data) ->
+          reject data
+    await sellp 1000
+    dd myStore.getState()
 
 # get ids
 getIds = (data) ->

@@ -34,12 +34,16 @@ export default ({
   ) ->
     data = yield services.lc.login toolFuc
     ,
-      payload
-    yield put
-      type: type.save
-      payload: {
-        data
-      }
+      payload.data
+    if data isnt ( null and undefined)
+      yield payload.callback.success data
+      yield put 
+        type: type.save
+        payload: {
+          data
+        }
+    else
+      yield payload.callback.fail 'error'
     return
 
   fetch: (
@@ -50,12 +54,16 @@ export default ({
   ) ->
     data = yield services.lc.fetch toolFuc
     ,
-      payload
-    yield put
-      type: type.save
-      payload: {
-        data
-      }
+      payload.data
+    if data isnt ( null and undefined)
+      yield payload.callback.success data
+      yield put 
+        type: type.save
+        payload: {
+          data
+        }
+    else
+      yield payload.callback.fail 'error'
     return
   
   patch: (
@@ -66,12 +74,16 @@ export default ({
   ) ->
     data = yield services.lc.patch toolFuc
     ,
-      payload
-    yield put 
-      type: type.save
-      payload: {
-        data
-      }
+      payload.data
+    if data isnt ( null and undefined)
+      yield payload.callback.success data
+      yield put 
+        type: type.save
+        payload: {
+          data
+        }
+    else
+      yield payload.callback.fail 'error'
     return
 
   reload: (
@@ -81,11 +93,15 @@ export default ({
     { put }
   ) ->
     data = yield services.lc.reload toolFuc
-    yield put
-      type: type.save
-      payload: {
-        data
-      }
+    if data isnt ( null and undefined)
+      yield payload.callback.success data
+      yield put 
+        type: type.save
+        payload: {
+          data
+        }
+    else
+      yield payload.callback.fail 'error'
     return
 
   remove: (
@@ -94,10 +110,16 @@ export default ({
     }
     { put }
   ) ->
-    yield services.lc.remove toolFuc
+    data = yield services.lc.remove toolFuc
     ,
-      payload
-    yield put 
-      type: type.reload
-      payload: ''
+      payload.data
+    if data isnt ( null and undefined)
+      yield payload.callback.success data
+      yield put 
+        type: type.save
+        payload: {
+          data
+        }
+    else
+      yield payload.callback.fail 'error'
     return
