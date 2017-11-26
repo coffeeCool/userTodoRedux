@@ -62,22 +62,7 @@ createFuc = ->
 
     await sellp 1000
     dd myStore.getState()
-# createFuc = (resolve, reject)->
-#   myStore.dispatch actions.userCreate 
-#     data:
-#       username: '何文涛'
-#       password: '123456'
-#       phoneNo: '110'
-#     callback:
-#       success: (data) ->
-#         resolve data
-#       fail: (data) ->
-#         reject data
 
-#   await sellp 1000
-#   dd myStore.getState()
-
-# login user
 loginFuc = (data) ->
   new Promise (resolve, reject) ->
     myStore.dispatch actions.userLogin
@@ -89,6 +74,7 @@ loginFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
+
     await sellp 1000
     dd myStore.getState()
 
@@ -103,6 +89,7 @@ fetchFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
+
     await sellp 1000
     dd myStore.getState()
 
@@ -121,6 +108,7 @@ patchFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
+
     await sellp 1000
     dd myStore.getState()
 
@@ -134,6 +122,7 @@ reloadFuc = ->
           resolve data
         fail: (data) ->
           reject data
+
     await sellp 1000
     dd myStore.getState()
 
@@ -149,6 +138,7 @@ removeFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
+          
     await sellp 1000
     dd myStore.getState()
 
