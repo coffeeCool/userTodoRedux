@@ -24,6 +24,7 @@
     "cfx.redux-types": "^0.0.4",
     "cfx.rollup-plugin-coffee2": "^0.1.0",
     "dva": "^2.0.4",
+    "is-equal": "^1.5.5",
     "rollup": "^0.51.1",
     "rollup-plugin-alias": "^1.4.0",
     "rollup-plugin-async": "^1.2.0",

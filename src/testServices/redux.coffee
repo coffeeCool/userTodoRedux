@@ -1,4 +1,5 @@
 import dd from 'ddeyes'
+import isEqual from 'is-equal'
 import * as store from '../store'
 
 {
@@ -9,10 +10,23 @@ import * as store from '../store'
   getStore
 } = store
 
+subscriber = (
+  prevState
+  nextState
+  action
+  dispatch
+) ->
+  unless action.type isnt 'USER_SAVE'
+    return dd @getState() if not isEqual prevState, nextState
+  unless action.type isnt ( 'USER_LOGIN' or 'USER_FETCH' )
+    return dd @getState()
+
 myStore = getStore {
   appName: 'userApp'
   reducers
   sagas
+  subscriber:
+    async: subscriber
 }
 
 # static
@@ -39,13 +53,6 @@ reducersFuc = ->
     ]
   myStore.onsubscribe()
 
-# sellp function
-sellp = (time) ->
-  return new Promise (resolve, ms)->
-    setTimeout ->
-      resolve()
-    , time
-
 # create user  
 createFuc = ->
   new Promise (resolve, reject) ->
@@ -60,9 +67,6 @@ createFuc = ->
         fail: (data) ->
           reject data
 
-    await sellp 1000
-    dd myStore.getState()
-
 loginFuc = (data) ->
   new Promise (resolve, reject) ->
     myStore.dispatch actions.userLogin
@@ -75,9 +79,6 @@ loginFuc = (data) ->
         fail: (data) ->
           reject data
 
-    await sellp 1000
-    dd myStore.getState()
-
 # fetch user
 fetchFuc = (data) ->
   new Promise (resolve, reject) ->
@@ -89,9 +90,6 @@ fetchFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
-
-    await sellp 1000
-    dd myStore.getState()
 
 # patch user
 patchFuc = (data) ->
@@ -109,9 +107,6 @@ patchFuc = (data) ->
         fail: (data) ->
           reject data
 
-    await sellp 1000
-    dd myStore.getState()
-
 # reload class
 reloadFuc = ->
   new Promise (resolve, reject) ->
@@ -122,9 +117,6 @@ reloadFuc = ->
           resolve data
         fail: (data) ->
           reject data
-
-    await sellp 1000
-    dd myStore.getState()
 
 # remove user
 removeFuc = (data) ->
@@ -138,9 +130,6 @@ removeFuc = (data) ->
           resolve data
         fail: (data) ->
           reject data
-          
-    await sellp 1000
-    dd myStore.getState()
 
 # get ids
 getIds = (data) ->
@@ -159,7 +148,6 @@ export default redux_userTest = {
   reloadFuc
   removeFuc
   getIds
-  sellp
   reducersFuc
   staticFuc
 }
