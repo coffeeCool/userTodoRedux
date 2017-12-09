@@ -11,7 +11,7 @@ export default config = do ->
     
   baseUri =
     lc_uri: "https://xy1g1vfw.api.lncld.net/1.1"
-    local_uri: "http://192.168.0.192:7001"
+    local_uri: "http://192.168.0.193:7001"
   
   users = 
     create:

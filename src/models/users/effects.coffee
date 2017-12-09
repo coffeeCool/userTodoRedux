@@ -15,13 +15,13 @@ export default ({
     data = yield services.lc.create toolFuc
     ,
       payload.data
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'create error'
     return
@@ -35,13 +35,13 @@ export default ({
     data = yield services.lc.login toolFuc
     ,
       payload.data
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'login error'
     return
@@ -55,13 +55,13 @@ export default ({
     data = yield services.lc.fetch toolFuc
     ,
       payload.data
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'fetch error'
     return
@@ -75,13 +75,13 @@ export default ({
     data = yield services.lc.patch toolFuc
     ,
       payload.data
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'patch error'
     return
@@ -93,13 +93,13 @@ export default ({
     { put }
   ) ->
     data = yield services.lc.reload toolFuc
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'reload error'
     return
@@ -113,13 +113,13 @@ export default ({
     data = yield services.lc.remove toolFuc
     ,
       payload.data
-    if data isnt undefined
-      yield payload.callback.success data
+    if data?
       yield put 
         type: type.save
         payload: {
           data
         }
+      yield payload.callback.success data
     else
       yield payload.callback.fail 'remove error'
     return

@@ -1,27 +1,20 @@
 import 'shelljs/make'
 import dd from 'ddeyes'
-import redux_test from '../../src/testServices/redux'
+import userRedux from '../../src/testServices/redux'
 
 target.all = ->
   dd 'hello userTodoRedux ！'
 
 target.static = ->
-  redux_test.staticFuc()
+  userRedux.staticFuc()
 
 target.reducers = ->
-  redux_test.reducersFuc()
+  userRedux.reducersFuc()
 
 target.sagas = ->
-  data = await redux_test.createFuc()
-  data
-
-  await redux_test.loginFuc data
-
-  await redux_test.fetchFuc data
-
-  await redux_test.reloadFuc()
-
-  data_patch = await redux_test.patchFuc data
-  data_patch
-
-  await redux_test.removeFuc data_patch
+  data = await userRedux.createFuc()
+  await userRedux.loginFuc data
+  await userRedux.fetchFuc data
+  await userRedux.reloadFuc()
+  data_patch = await userRedux.patchFuc data
+  await userRedux.removeFuc data_patch

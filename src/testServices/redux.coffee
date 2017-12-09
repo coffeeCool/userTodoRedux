@@ -140,7 +140,7 @@ getIds = (data) ->
     ]
   , []
 
-export default redux_userTest = {
+export default userRedux = {
   createFuc
   loginFuc
   fetchFuc
